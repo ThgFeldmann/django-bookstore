@@ -79,6 +79,17 @@ files = [
 djangorestframework = "*"
 
 [[package]]
+name = "django-viewset"
+version = "0.1.1"
+description = "A replacement of django.contrib.admin"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django-viewset-0.1.1.tar.gz", hash = "sha256:a8219091a12ae3e2f21a9e31fc1e169f62ad1101e2fff8a8099332e86ef05dac"},
+]
+
+[[package]]
 name = "djangorestframework"
 version = "3.15.2"
 description = "Web APIs for Django, made easy."
@@ -305,4 +316,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "dea1185089e72cdc490510ec0ad5c574f6725ce315f9dd364873cd061eb10c04"
+content-hash = "43102b5e8157e7bae749ecf584bfab834506757c91060999c3824597a8e5b8d4"
