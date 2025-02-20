@@ -26,10 +26,10 @@ WORKDIR /app
 COPY poetry.lock pyproject.toml ./
 
 # Instalar dependências do Poetry (runtime)
-RUN poetry install --without dev
+ # RUN poetry install --no-dev | foi removido e o código funcionou
 
 # Copiar código-fonte do projeto
-COPY . .
+COPY . /app/
 
 # Expor a porta padrão do Django
 EXPOSE 8000
