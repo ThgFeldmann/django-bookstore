@@ -25,6 +25,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 WORKDIR /app
 COPY poetry.lock pyproject.toml ./
 
+# Install postgres dependencies
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+
 # Instalar dependências do Poetry (runtime)
  # RUN poetry install --no-dev | foi removido e o código funcionou
 
