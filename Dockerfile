@@ -1,5 +1,5 @@
 # `python-base` sets up all our shared environment variables
-FROM python:3.8.1-slim as python-base
+FROM python:3.13.1-slim as python-base
 
     # python
 ENV PYTHONUNBUFFERED=1 \
@@ -13,7 +13,7 @@ ENV PYTHONUNBUFFERED=1 \
     \
     # poetry
     # https://python-poetry.org/docs/configuration/#using-environment-variables
-    POETRY_VERSION=1.0.3 \
+    POETRY_VERSION=2.1.1 \
     # make poetry install to this location
     POETRY_HOME="/opt/poetry" \
     # make poetry create the virtual environment in the project's root
@@ -39,7 +39,11 @@ RUN apt-get update \
         build-essential
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN curl -sSL https://install.python-poetry.org | python3  -
+
+# copying pyproject to only reinstall when it is updated, to ensure building is not slow
+WORKDIR /app
+COPY poetry.lock pyproject.toml /code/
 
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
@@ -49,10 +53,8 @@ RUN apt-get update \
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
-# install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-
-# quicker install as runtime deps are already installed
-COPY . /app/
+# Installing dependencies from '.lock' file
+RUN poetry install --no-root
 
 WORKDIR /app
 
