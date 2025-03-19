@@ -5,7 +5,7 @@ description = "Bookstore api"
 authors = [
     {name = "Thiago",email = "thiagofeldmann06@gmail.com"}
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 
 dependencies = [
     "pytest (>=8.3.4,<9.0.0)",
